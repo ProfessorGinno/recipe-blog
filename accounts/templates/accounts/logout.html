@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class='bg-img'>
+    <div class='logout min-vh-100 d-flex justify-content-center align-items-center'>
+        <a href={% url 'home' %}>
+            <button class='btn btn-danger btn-lg' style="--bs-btn-padding-y: 2rem; --bs-btn-padding-x: 2rem;" type='submit'>You've correctly logged out. <br> <br> Click here to go home</button>
+        </a>
+    </div>
+</div>
+{% endblock content %}
