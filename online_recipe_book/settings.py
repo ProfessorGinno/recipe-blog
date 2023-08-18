@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'recipes_blog.apps.RecipesBlogConfig',
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
-    'crispy_forms'
+    'crispy_forms',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
