@@ -12,29 +12,29 @@ def index(request):
     return render (request, template_name='recipes_blog/index_post.html', context={'post': post})
 
 
-class CreatePost(CreateView):
+class CreatePost(LoginRequiredMixin,CreateView):
     model = Post
     template_name = "recipes_blog/create_post.html"
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('blog_index')
     fields = [
         "title","description","image","recipe_country"
     ]
     permission_required = "post.add_post"
 
-class DeletePost(DeleteView):
+class DeletePost(LoginRequiredMixin,DeleteView):
     model = Post
     template_name = "recipes_blog/delete_post.html"
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('blog_index')
     # permission_required = "post.delete_post" 
 
-class UpdatePost(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+class UpdatePost(LoginRequiredMixin,UpdateView):
     model = Post
     template_name = "recipes_blog/update_post.html"
     success_url = reverse_lazy('blog_index')
     fields = [
-        "title","description","image","creation_date","actualitation_date","recipe_country"
+        "title","description","image","recipe_country"
     ]
-    permission_required = "post.update_post" 
+    # permission_required = "post.update_post" 
 
 class DetailPost(LoginRequiredMixin,DetailView):
     model = Post
