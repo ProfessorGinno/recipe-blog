@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Delete Post
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 bg-faded p-5 rounded">
+            <h2 class="section-heading mb-0 text-center">
+                <span class="section-heading-upper">Delete Post</span>
+            </h2>
+            <p class="text-center">
+                Are you sure you want to delete this post?
+            </p>
+            <span class="text-center section-heading-lower">{{ object.title }}</span>
+            <form action="{% url 'delete_post' object.id %}" method="POST">
+                {% csrf_token %}
+                <div class="text-center mt-3">
+                    <button class="btn btn-danger" type="submit">Delete Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock extrahead %}
+
+{% block header %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link href="{% static 'css/create_post.css' %}" rel="stylesheet" />
+{% endblock header %}
+
+{% block title %}
+    Update Post
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 bg-faded p-5 rounded">
+            <h2 class="section-heading mb-0 text-center">
+                <span class="section-heading-upper">Update Post</span>
+            </h2>
+            <form action="{% url 'update_post' object.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-outline-danger btn-lg" type="submit">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

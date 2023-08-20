@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+
+{% block header %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link href={% static "css/create_post.css" %} rel="stylesheet" />
+{% endblock header %}
+
+{% block title %}
+    Detail Post
+{% endblock title %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 bg-faded p-5 rounded">
+            <div class="product-item-title d-flex justify-content-center">
+                <div class="bg-faded p-5 d-flex me-auto rounded">
+                    <h2 class="section-heading mb-0 text-center">
+                        <span class="section-heading-upper">{{ object.recipe_country }}</span>
+                        <span class="section-heading-lower">{{ object.title }}</span>
+                    </h2>
+                </div>
+            </div>
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 custom-style" src="{{ object.image.url }}" alt="..." />
+            <div class="product-item-description d-flex me-auto">
+                <div class="bg-faded p-5 rounded"><p class="mb-0">{{ object.description|safe }}</p></div>
+            </div>
+            <div class="mt-4">
+                <a href="{% url 'blog_index' %}" class="btn btn-primary">Back to Index</a>
+                <a href="{% url 'update_post' object.id %}" class="btn btn-primary">Update Post</a>
+                <a href="{% url 'delete_post' object.id %}" class="btn btn-primary">Delete Post</a>
+            </div>
+        </div>
+        <p class="text-white">Creation Date: {{ object.creation_date }}</p>
+    </div>
+    
+</div>
+{% endblock %}
+
+
+
