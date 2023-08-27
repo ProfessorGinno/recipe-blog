@@ -5,6 +5,9 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from .models import Post
 
+import requests
+from django.http import JsonResponse
+
 # Create your views here.
 
 def index(request):
@@ -19,7 +22,11 @@ class CreatePost(LoginRequiredMixin,CreateView):
     fields = [
         "title","description","image","recipe_country"
     ]
-    permission_required = "post.add_post"
+    permission_required = "post.add_post"    
+
+    # def __init__():
+    #     # print('CREATE_POST_INIT')
+    #     pass
 
 class DeletePost(LoginRequiredMixin,DeleteView):
     model = Post
@@ -42,3 +49,10 @@ class DetailPost(LoginRequiredMixin,DetailView):
 
 class ListPost(LoginRequiredMixin,ListView):
     model = Post
+
+def get_countries_by_name(request, country_name):
+    url = 'https://restcountries.com/v3.1/name/{0}?fields=name'.format(country_name)
+    response = requests.get(url, headers={'Content-Type': 'application/json'})
+    data = response.json()
+    print(data)
+    return JsonResponse(data, safe=False)

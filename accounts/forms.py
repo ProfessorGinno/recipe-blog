@@ -9,6 +9,6 @@ class UserEditForm(forms.Form):
     phone = forms.CharField(label='', max_length=20, required=False, widget=forms.TextInput(attrs={'Placeholder':'Mobile Number'}))
     address = forms.CharField(label='', max_length=100, required=False, widget=forms.TextInput(attrs={'Placeholder':'Address Line'}))
     country = forms.CharField(label='', max_length=100, required=False, widget=forms.TextInput(attrs={'Placeholder': 'Country'}))
-    state= forms.CharField(label='', max_length=100, required=False, widget=forms.TextInput(attrs={'Placeholder':'State/Region'}))
-    city = forms.CharField(label='', max_length=100, required=False, widget=forms.TextInput(attrs={'Placeholder': 'City'}))
+    # state= forms.CharField(label='', max_length=100, required=False, widget=forms.TextInput(attrs={'Placeholder':'State/Region'}))
+    # city = forms.CharField(label='', max_length=100, required=False, widget=forms.TextInput(attrs={'Placeholder': 'City'}))
     image = forms.ImageField(label='Imagen', required=False)

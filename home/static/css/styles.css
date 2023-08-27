@@ -11027,3 +11027,46 @@ p {
 .address strong {
   font-size: 1.2rem;
 }
+
+
+
+.updatepro_form .form-content {
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  grid-template-rows: auto;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.updatepro_form .form-content .autocomplete {
+  width: unset !important;
+}
+
+.updatepro_form .form-content .autocomplete-input {
+  width: 100% !important;
+}
+
+.updatepro_form .form-content input {
+  width: 100%;
+}
+
+.updatepro_form .image-container .control-group {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.updatepro_form .image-container .control-group label {
+  margin-right: 1rem;
+}
+
+.updatepro_form footer {
+  display: flex;
+  padding: 1rem 14.2rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.updatepro_form footer a:first-of-type {
+  margin-right: 1rem;
+}

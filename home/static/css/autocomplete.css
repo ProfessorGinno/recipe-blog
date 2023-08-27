@@ -1,0 +1,32 @@
+.autocomplete {
+    position: relative;
+    width: 300px;
+}
+
+.autocomplete .autocomplete-input {
+    width: 100%;
+}
+
+.autocomplete .autocomplete-result-list {
+    position: absolute;
+    background-color: white;
+    color: black;
+    height: 200px;
+    max-height: 200px;
+    width: 100%;
+    top: 60px;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+}
+
+.autocomplete .autocomplete-result-list li {
+    margin: 0;
+    padding: 12px;
+}
+
+.autocomplete .autocomplete-result-list li:hover {
+    background-color: lightgray;
+}
