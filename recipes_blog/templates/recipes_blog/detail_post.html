@@ -24,26 +24,43 @@
             <div class="product-item-title d-flex justify-content-center">
                 <div class="bg-faded p-5 d-flex me-auto rounded">
                     <h2 class="section-heading mb-0 text-center">
-                        <span class="section-heading-upper">{{ object.recipe_country }}</span>
-                        <span class="section-heading-lower">{{ object.title }}</span>
+                        <span class="section-heading-upper">{{ post.recipe_country }}</span>
+                        <span class="section-heading-lower">{{ post.title }}</span>
                     </h2>
                 </div>
             </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 custom-style" src="{{ object.image.url }}" alt="..." />
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 custom-style" src="{{ post.image.url }}" alt="..." />
             <div class="product-item-description d-flex me-auto">
-                <div class="bg-faded p-5 rounded"><p class="mb-0">{{ object.description|safe }}</p></div>
+                <div class="bg-faded p-5 rounded"><p class="mb-0">{{ post.description|safe }}</p></div>
             </div>
             <div class="mt-4">
                 <a href="{% url 'blog_index' %}" class="btn btn-primary">Back to Index</a>
-                <a href="{% url 'update_post' object.id %}" class="btn btn-primary">Update Post</a>
-                <a href="{% url 'delete_post' object.id %}" class="btn btn-primary">Delete Post</a>
+                <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Update Post</a>
+                <a href="{% url 'delete_post' post.id %}" class="btn btn-primary">Delete Post</a>
+            </div>
+            <div class="comments mt-4">
+                <h2>Comments</h2>
+                <ul>
+                    {% for comment in comments %}
+                        <div class='rounded-3 p-2 mb-2 bg-light text-dark'>
+                        {{ comment.author}}: {{ comment.comment|safe }}
+                        </div>
+                    {% empty %}
+                        <li>no comments yet.</li>
+                    {% endfor %}
+                </ul>
+                
+                <h2>Add a Comment</h2>
+                <form method='post'>
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button type='submit'>Submit</button>
+                </form>
             </div>
         </div>
-        <p class="text-white">Creation Date: {{ object.creation_date }}</p>
+        <p class="text-white">Creation Date: {{ post.creation_date }}</p>
     </div>
     
 </div>
 {% endblock %}
-
-
-

@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import DeleteView, UpdateView, DetailView, CreateView
+from django.views.generic import DeleteView, UpdateView, CreateView
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 
 import requests
 from django.http import JsonResponse
@@ -23,6 +25,9 @@ class CreatePost(LoginRequiredMixin,CreateView):
         "title","description","image","recipe_country"
     ]
     permission_required = "post.add_post"    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
     # def __init__():
     #     # print('CREATE_POST_INIT')
@@ -42,10 +47,22 @@ class UpdatePost(LoginRequiredMixin,UpdateView):
         "title","description","image","recipe_country"
     ]
     # permission_required = "post.update_post" 
+   
+def DetailPost(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comments = Comment.objects.filter(post=post)
 
-class DetailPost(LoginRequiredMixin,DetailView):
-    model = Post
-    template_name = "recipes_blog/detail_post.html"
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+            return redirect('detail_post', pk=pk)
+    else:
+        form = CommentForm()
+    return render(request, 'recipes_blog/detail_post.html', {'post': post, 'comments': comments, 'form': form})
 
 class ListPost(LoginRequiredMixin,ListView):
     model = Post
