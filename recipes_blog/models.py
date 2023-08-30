@@ -10,7 +10,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='profile_image', blank=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     # creation_date = models.DateField()
-    actualitation_date = models.DateTimeField(auto_now_add=True)
-    # actualitation_date = models.DateField()
+    edit_date = models.DateTimeField(auto_now_add=True)
+    # edit_date = models.DateField()
     recipe_country = models.CharField(max_length=20, blank=True) # Se debe consumir con la API de restcountries.
 
