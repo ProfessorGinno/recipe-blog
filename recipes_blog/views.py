@@ -13,7 +13,7 @@ from django.http import JsonResponse
 # Create your views here.
 
 def index(request):
-    post = Post.objects.order_by ('-actualitation_date').all()
+    post = Post.objects.order_by ('-edit_date').all()
     return render (request, template_name='recipes_blog/index_post.html', context={'post': post})
 
 
