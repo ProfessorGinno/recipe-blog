@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Search Post
+{% endblock title %}
+
+{% block content %}
+<h1 style="text-align: center; color:#0068c3"> Search Results </h1>
+<div id="site-content">
+    <main class="main-content">
+        <div class="container">
+            <div class="page">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="slider">
+                            <ul class="slides">
+                                {% for post in object_list %}
+                                <li><a href={% url 'detail_post' post.id %}>{{ post.title }}</a></li>
+                                {% comment %} <li><a href={% url 'detail_post' post.id %}><img style="height:660px" src={{ post.image.url }} alt="Slide 1"></a></li> {% endcomment %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-12">
+                                        <div class="latest-movie">
+                                            <h3 style="color:black; text-align:center;">Other results</h3>
+                                            <ul>
+                                                {% for post in object_list %}
+                                                <a href={% url 'detail_post' post.id%}><p style="color:grey;">{{forloop.counter}} {{post.title}}</p></a>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <form action={% url 'search_post' %} method="GET">
+                                <input name="q" type="text" placeholder="Search post">
+                                <input type="submit" value="Search Post">
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </main>
+                <footer class="site-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="widget">
+                                </div>
+                            </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+            <script src={% static 'js/jquery-1.11.1.min.js' %}></script>
+            <script src={% static 'js/plugins.js' %}></script>
+            <script src={% static 'js/app.js' %}></script>
+{% endblock content %}
