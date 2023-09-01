@@ -8,13 +8,17 @@ from django.views.generic import DeleteView, CreateView
 from django.urls import reverse_lazy
 
 from .forms import UserEditForm
-from . models import UserProfile
+from .models import UserProfile
 
 class UserSignUp(CreateView):
     model = User
     form_class = UserCreationForm
     success_url = reverse_lazy('sign_up_success')
     template_name = 'accounts/signup.html'
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form), status=400)
+
 
 def sign_up_success(request):
     return render(request, template_name='accounts/sign_up_success.html')
@@ -42,8 +46,6 @@ def user_update(request):
             user_profile.phone = data.get('phone')
             user_profile.address = data.get('address')
             user_profile.country = data.get('country')
-            # user_profile.state = data.get('state')
-            # user_profile.city = data.get('city')
             user_profile.image = data.get('image') if data.get('image') else user_profile.image
             user_profile.save()
             user.save()
@@ -58,8 +60,6 @@ def user_update(request):
                 'phone': user.userprofile.phone,
                 'address': user.userprofile.address,
                 'country': user.userprofile.country,
-                # 'state': user.userprofile.state,
-                # 'city': user.userprofile.city,
                 'image': user.userprofile.image
             }
         )

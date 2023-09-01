@@ -29,7 +29,15 @@
                     </h2>
                 </div>
             </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 custom-style" src="{{ post.image.url }}" alt="..." />
+            {% if post.image %}
+                <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 custom-style" src="{{ post.image.url }}" alt="..." />
+            {% else %}
+            <img
+                class="rounded-circle mb-2 mt-2"
+                width="150px"
+                src="{% static 'img/generic-empty-image.png'%}"
+                />
+            {% endif %}
             <div class="product-item-description d-flex me-auto">
                 <div class="bg-faded p-5 rounded"><p class="mb-0">{{ post.description|safe }}</p></div>
             </div>
