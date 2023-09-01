@@ -29,10 +29,6 @@ class CreatePost(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-    # def __init__():
-    #     # print('CREATE_POST_INIT')
-    #     pass
-
 class DeletePost(LoginRequiredMixin,DeleteView):
     model = Post
     template_name = "recipes_blog/delete_post.html"
