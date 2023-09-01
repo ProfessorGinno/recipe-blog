@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.views.generic import DeleteView, CreateView
+from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
 from .forms import UserEditForm
@@ -69,13 +69,6 @@ def user_update(request):
 @login_required
 def profile(request):
     return render(request, 'accounts/profile.html')
-
-class UserDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    model = User
-    permission_required = 'accounts.delete_user'
-    success_url = reverse_lazy('home')
-    template_name = 'accounts/delete_user.html'
-
 
 class ChangePassword(LoginRequiredMixin, PasswordChangeView):
     model = User

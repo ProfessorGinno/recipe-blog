@@ -6,11 +6,10 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from .models import Post, Comment
 from .forms import CommentForm
+from django.db.models import Q
 
 import requests
 from django.http import JsonResponse
-
-# Create your views here.
 
 def index(request):
     post = Post.objects.order_by ('-edit_date').all()
@@ -33,7 +32,6 @@ class DeletePost(LoginRequiredMixin,DeleteView):
     model = Post
     template_name = "recipes_blog/delete_post.html"
     success_url = reverse_lazy('blog_index')
-    # permission_required = "post.delete_post" 
 
 class UpdatePost(LoginRequiredMixin,UpdateView):
     model = Post
@@ -42,7 +40,6 @@ class UpdatePost(LoginRequiredMixin,UpdateView):
     fields = [
         "title","description","image","recipe_country"
     ]
-    # permission_required = "post.update_post" 
    
 def DetailPost(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -69,3 +66,12 @@ def get_countries_by_name(request, country_name):
     data = response.json()
     print(data)
     return JsonResponse(data, safe=False)
+
+class SearchPost(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'recipes_blog/search_post.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Post.objects.filter(Q(title__icontains=query))
+        return object_list

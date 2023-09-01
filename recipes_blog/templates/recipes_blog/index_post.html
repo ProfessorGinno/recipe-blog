@@ -13,6 +13,13 @@
     </h1>
 </header>
 
+<div class="container">
+    <form action={% url 'search_post' %} method="GET">
+        <input name="q" type="text" placeholder="Search post">
+        <input type="submit" value="Search Post">
+    </form>
+</div>
+
 {% for p in post %}
     {% if forloop.counter|divisibleby:"2" %}
     <section class="page-section">
