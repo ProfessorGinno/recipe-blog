@@ -7,18 +7,24 @@ Search Post
 {% endblock title %}
 
 {% block content %}
-<h1 style="text-align: center; color:#0068c3"> Search Results </h1>
-<div id="site-content">
+
+<header>
+    <h1 class="site-heading text-center text-faded d-none d-lg-block">
+        <span class="site-heading-upper text-secondary mb-3" style="padding-top: 30px;">Search Results</span>
+        <span class="site-heading-lower text-secondary">Feeling hungry?</span>
+    </h1>
+</header>
+
+<div id="site-content" style="height: 600px;">
     <main class="main-content">
         <div class="container">
             <div class="page">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="slider">
-                            <ul class="slides">
+                            <ul>
                                 {% for post in object_list %}
-                                <li><a href={% url 'detail_post' post.id %}>{{ post.title }}</a></li>
-                                {% comment %} <li><a href={% url 'detail_post' post.id %}><img style="height:660px" src={{ post.image.url }} alt="Slide 1"></a></li> {% endcomment %}
+                                <li><a class="text-secondary" style="font-size: 40px;" href={% url 'detail_post' post.id %}>{{ post.title }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -37,10 +43,6 @@ Search Post
                                     </div>
                                 </div>
                             </div>
-                            <form action={% url 'search_post' %} method="GET">
-                                <input name="q" type="text" placeholder="Search post">
-                                <input type="submit" value="Search Post">
-                            </form>
                             </div>
                         </div>
                     </div>

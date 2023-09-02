@@ -4,8 +4,14 @@
 {% block title %}Sign up{% endblock title %}
 
 {% block content %}
+<header>
+    <h1 class="site-heading text-center text-faded d-none d-lg-block">
+        <span class="site-heading-upper text-secondary mb-3" style="padding-top: 30px;">Welcome</span>
+        <span class="site-heading-lower text-secondary">You are ready!</span>
+    </h1>
+</header>
 <div class='bg-img'>
-    <div class='sign-up-success min-vh-100 d-flex justify-content-center align-items-center'>
+    <div class='sign-up-success p-4 d-flex justify-content-center align-items-center'>
         <a href={% url 'login' %}>
             <button class='btn btn-primary btn-lg' style="--bs-btn-padding-y: 2rem; --bs-btn-padding-x: 2rem;" type='submit'>Congratulations! You've created a new account. <br> <br> Click here to go to login</button>
         </a>
