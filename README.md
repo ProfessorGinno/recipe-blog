@@ -48,10 +48,6 @@ python manage.py createsuperuser
 ```
 Input `Username` and `Password`
 
-- Create static.
-```bash
-python manage.py collectstatic
-```
 - Run project, django server exposes service by localhost on port 8000 by default `http://127.0.0.1:8000/`
 ```bash
 python manage.py runserver
@@ -214,11 +210,6 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 Ingrese `Username` y `Password`
-
-- Crear estáticos.
-```bash
-python manage.py collectstatic
-```
 
 - Ejecutar proyecto, el servidor de Django expone el servicio por el localhost en el puerto 8000 por defecto `http://127.0.0.1:8000/`
 ```bash
