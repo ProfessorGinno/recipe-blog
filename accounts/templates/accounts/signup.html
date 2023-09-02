@@ -5,13 +5,18 @@
 {% block title %}Sing up{% endblock title %}
 
 {% block content %}
+<header>
+    <h1 class="site-heading text-center text-faded d-none d-lg-block">
+        <span class="site-heading-upper text-secondary mb-3" style="padding-top: 30px;">Sign up</span>
+        <span class="site-heading-lower text-secondary">To a new world</span>
+    </h1>
+</header>
     <div class='bg-img'>
         <div class="container min-vh-100 d-flex justify-content-center align-items-center">
             <div class='sign-up-form'>
-                <h1 class='text-white d-flex justify-content-center'>Sign up</h1>
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="mt-2 fs-5 text-white">
+                    <div class="mt-2 fs-5 text-secondary">
                         <div class="col-md-12">
                             {{ form.username | as_crispy_field }}
                         </div>

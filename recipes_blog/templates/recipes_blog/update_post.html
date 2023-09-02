@@ -17,14 +17,16 @@
 {% endblock title %}
 
 {% block content %}
+<header>
+    <h1 class="site-heading text-center text-faded d-none d-lg-block">
+        <span class="site-heading-upper text-secondary mb-3" style="padding-top: 30px;">Bringing</span>
+        <span class="site-heading-lower text-secondary">New Flavors to your recipe?</span>
+    </h1>
+</header>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6 bg-faded p-5 rounded">
-            <h2 class="section-heading mb-0 text-center">
-                <span class="section-heading-upper">Update Post</span>
-                <br>
-            </h2>
-            <!-- <form action ="{% url 'update_post' object.id %}" method="POST" enctype="multipart/form-data"> -->
             <form class="update_form" action="{% url 'update_post' pk=post.pk %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.media }}

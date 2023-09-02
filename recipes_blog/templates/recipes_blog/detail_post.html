@@ -18,15 +18,17 @@
 
 
 {% block content %}
-<div class="container mt-5">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-6 bg-faded p-5 rounded">
+        <div class="col-lg-9 bg-faded rounded">
+            <header>
+                <h1 class="site-heading text-center text-faded d-none d-lg-block">
+                    <span class="site-heading-upper text-secondary mb-3" style="padding-top: 30px;">{{ post.recipe_country }}</span>
+                    <span class="site-heading-lower text-secondary">{{ post.title }}</span>
+                </h1>
+            </header>
             <div class="product-item-title d-flex justify-content-center">
                 <div class="bg-faded p-5 d-flex me-auto rounded">
-                    <h2 class="section-heading mb-0 text-center">
-                        <span class="section-heading-upper">{{ post.recipe_country }}</span>
-                        <span class="section-heading-lower">{{ post.title }}</span>
-                    </h2>
                 </div>
             </div>
             {% if post.image %}

@@ -35,6 +35,9 @@
                     <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href={% url 'create_post' %}>Create New Post</a></li>
                     <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href={% url 'profile' %}>Profile</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href={% url 'logout' %}>Logout</a></li>
+                            <form action={% url 'search_post' %} method="GET">
+                                <input name="q" type="text" placeholder="Search post">
+                            </form>
                     {% else %}
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href={% url 'login' %}>Login</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href={% url 'signup' %}>Sign Up</a></li>

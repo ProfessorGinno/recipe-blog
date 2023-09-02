@@ -2,8 +2,14 @@
 {% load static %}
 
 {% block content %}
+<header>
+    <h1 class="site-heading text-center text-faded d-none d-lg-block">
+        <span class="site-heading-upper text-secondary mb-3" style="padding-top: 30px;">We hope</span>
+        <span class="site-heading-lower text-secondary">To see you back soon</span>
+    </h1>
+</header>
 <div class='bg-img'>
-    <div class='logout min-vh-100 d-flex justify-content-center align-items-center'>
+    <div class='logout p-4 d-flex justify-content-center align-items-center'>
         <a href={% url 'home' %}>
             <button class='btn btn-danger btn-lg' style="--bs-btn-padding-y: 2rem; --bs-btn-padding-x: 2rem;" type='submit'>You've correctly logged out. <br> <br> Click here to go home</button>
         </a>

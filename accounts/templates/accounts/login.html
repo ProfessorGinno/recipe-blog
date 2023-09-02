@@ -5,11 +5,17 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
+<header>
+    <h1 class="site-heading text-center text-faded d-none d-lg-block">
+        <span class="site-heading-upper text-secondary mb-3" style="padding-top: 30px;">Welcome</span>
+        <span class="site-heading-lower text-secondary">Back</span>
+    </h1>
+</header>
     <div class='bg-img d-flex justify-content-center'>
         <div class='login-form d-flex flex-colum '>
             <form method="POST">
                 {% csrf_token %}
-                <div class="d-flex row my-5 text-white fs-4">
+                <div class="d-flex row my-5 text-secondary fs-4">
                     <div class="col-md-12 d-flex justify-content-center input-field-login">
                         {{ form.username | as_crispy_field }}
                     </div>
